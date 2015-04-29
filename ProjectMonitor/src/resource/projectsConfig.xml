@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<projects>
+
+	<project>
+		<name>QUBE Live</name>
+		<url>http://qube.quidos.co.uk/passport/index</url>
+		<alias>QUBE 生产环境</alias>
+		<webName>QUBE Online - Powered by Quidos</webName>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = QUBE ORDER BY key DESC</jiraUrl>
+	</project>
+	
+	<project>
+		<name>QUBE2 Uat</name>
+		<url>http://qube2.quidos.co.uk/passport/index</url>
+		<alias>QUBE uat</alias>
+		<webName>QUBE Online - Powered by Quidos</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>QUBE3 Uat</name>
+		<url>http://qube3.quidos.co.uk/passport/index</url>
+		<alias>QUBE uat</alias>
+		<webName>QUBE Online - Powered by Quidos</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>qAdmin Live</name>
+		<url>http://qadmin.quidos.co.uk/</url>
+		<alias>qAdmin 生产环境</alias>
+		<webName>GDSAP Admin</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>qAdmin2 uat</name>
+		<url>http://qadmin2.quidos.co.uk/</url>
+		<alias>qAdmin uat</alias>
+		<webName>GDSAP Admin</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>qAdmin3 uat</name>
+		<url>http://qadmin3.quidos.co.uk/</url>
+		<alias>qAdmin uat</alias>
+		<webName>GDSAP Admin</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>iqenergy Live</name>
+		<url>http://iqenergy.quidos.co.uk/</url>
+		<alias>iqenergy Live</alias>
+		<webName>Welcome to iQ-Energy | Powered by Quidos</webName>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = IENERGY ORDER BY key DESC</jiraUrl>
+	</project>
+	
+	<project>
+		<name>iqenergy Ote</name>
+		<url>http://iqenergy2.quidos.co.uk/</url>
+		<alias>iqenergy Ote</alias>
+		<webName>Welcome to iQ-Energy | Powered by Quidos</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>iqenergy Uat</name>
+		<url>http://iqenergy3.quidos.co.uk/</url>
+		<alias>iqenergy Ote</alias>
+		<webName>Welcome to iQ-Energy | Powered by Quidos</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>iadmin Live</name>
+		<url>http://iadmin.quidos.co.uk/</url>
+		<alias>iadmin Live</alias>
+		<webName>iQ-Energy - iAdmin System</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>iadmin2 Ote</name>
+		<url>http://iadmin2.quidos.co.uk/</url>
+		<alias>iadmin Ote</alias>
+		<webName>iQ-Energy - iAdmin System</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>iadmin3 Uat</name>
+		<url>http://iadmin3.quidos.co.uk/</url>
+		<alias>iadmin Uat</alias>
+		<webName>iQ-Energy - iAdmin System</webName>
+		<jiraUrl></jiraUrl>
+	</project>
+	
+	<project>
+		<name>Airs Live</name>
+		<url>http://premium.airconreport.co.uk/passport/index.do</url>
+		<alias>Airs Live</alias>
+		<webName>Air-Conditioning Inspection Report System</webName>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = AIRS ORDER BY key DESC</jiraUrl>
+	</project>
+	
+	<project>
+		<name>F-Gas Register</name>
+		<url>http://www.fgasregister.com/</url>
+		<alias>F-Gas Register</alias>
+		<webName>Welcome to fgasRegister.com | Powered by Quidos</webName>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = FGAS ORDER BY key DESC</jiraUrl>
+	</project>
+	
+	<project>
+		<name>QAS Online</name>
+		<url>http://qas.quidos.co.uk/</url>
+		<alias>QAS Online</alias>
+		<webName>Welcome to QAS Online | Powered by Quidos</webName>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = QAS ORDER BY key DESC</jiraUrl>
+	</project>
+	
+	<project>
+		<name>Quidos webservice api2</name>
+		<url>http://api2.argylesoftware.co.uk/</url>
+		<alias>api2</alias>
+		<webContent>Argylesoftware Webservice</webContent>
+	</project>
+	
+	<project>
+		<name>Quidos webservice api</name>
+		<url>http://api.argylesoftware.co.uk/</url>
+		<alias>api</alias>
+		<webContent>Argylesoftware Webservice</webContent>
+	</project>
+	
+	<project>
+		<name>KNAUF</name>
+		<url>http://erf.argylesoftware.co.uk/</url>
+		<alias>KNAUF</alias>
+		<webName>Welcome to KNAUF</webName>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = KNAUF ORDER BY key DESC</jiraUrl>
+	</project>
+
+	<project>
+		<name>SAP</name>
+		<url>http://api.argylesoftware.co.uk/</url>
+		<alias>api</alias>
+		<webContent>Argylesoftware Webservice</webContent>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = SAP ORDER BY key DESC</jiraUrl>
+	</project>
+
+	<project>
+		<name>IQENGINE</name>
+		<url>http://api.argylesoftware.co.uk/</url>
+		<alias>IQENGINE</alias>
+		<webContent>Argylesoftware Webservice</webContent>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = IQENGINE ORDER BY key DESC</jiraUrl>
+	</project>
+
+	<project>
+		<name>HAR</name>
+		<url>http://api.argylesoftware.co.uk/</url>
+		<alias>HAR</alias>
+		<webContent>HAR</webContent>
+		<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = HAR ORDER BY key DESC</jiraUrl>
+	</project>
+</projects>
