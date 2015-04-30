@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Monitoring Report</title>
+</head>
+<body>
+	<table align="center" border="1" width="100%">
+		<thead>
+			<tr align="center">
+				<td>项目名</td>
+				<td>连通性</td>
+				<td>最近五个jira问题</td>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<#list ps?if_exists as p>
+			<tr>
+				<td><a href="${p.url?if_exists}" target="_blank">${p.name?if_exists}</a></td>
+				<td><#if p.connectivity>OK</#if> <#if !p.connectivity>存在异常</#if></td>
+				<td>
+					<#if p.jiraProblems?exists > 
+					<table align="center" border="1" width="100%">
+						<#list p.jiraProblems?if_exists as pj>
+						<tr>
+							<td><a href="${pj.url?if_exists}" target="_blank">${pj.name?if_exists}</a></td>
+							<td>${pj.assigneeName?if_exists}</td>
+							<td>${pj.status?if_exists}</td>
+							<td>${pj.createTime?if_exists}</td>
+						</tr>
+						</#list>
+					</table>
+					</#if>
+				</td>
+			</tr>
+			</#list>
+		</tbody>
+	</table>
+</body>
+</html>

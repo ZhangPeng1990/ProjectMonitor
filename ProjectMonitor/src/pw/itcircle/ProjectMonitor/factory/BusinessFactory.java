@@ -35,11 +35,16 @@ public class BusinessFactory
 	private Document config;
 	public static final String basePath = BusinessFactory.class.getClass().getResource("/").getPath() + File.separator;
 	private final String configPath = basePath + "resource" + File.separator + "projectsConfig.xml";
+	public final String reportTemplatePath = basePath + "resource" + File.separator + "Report_Template.html";
 	private List<Project> projects = null;
 	private WebClient webBrowser;
 	private Map<String,Boolean> loginedWebMap = new HashMap<String, Boolean>();
 	private Map<String,HtmlPage> openedWebPageMap = new HashMap<String, HtmlPage>();
 	private final BrowserVersion browserVersion = BrowserVersion.INTERNET_EXPLORER_11;
+	private String jiraUserName;
+	private String jiraPassWord;
+	private String jiraRrootUrl;
+	private String jiraLoginUrl;
 	
 	private BusinessFactory()
 	{
@@ -50,6 +55,36 @@ public class BusinessFactory
 		this.webBrowser.getOptions().setTimeout(100000);
 		this.webBrowser.getCookieManager().setCookiesEnabled(true);
 		
+		Element rootElt = this.config.getRootElement();
+		String defNamespace = rootElt.getNamespaceURI();
+		XPath xpathSelector;
+		
+		Map<String, String> nameSpaceMap = new HashMap<String, String>();
+		if(defNamespace != null)
+		{
+			nameSpaceMap.put("defu", defNamespace);
+		}
+			
+		xpathSelector = DocumentHelper.createXPath("//jira//defu:userName");
+		xpathSelector.setNamespaceURIs(nameSpaceMap);
+		Element userNameE = (Element) xpathSelector.selectSingleNode(config);
+		this.jiraUserName = userNameE.getTextTrim();
+		
+		xpathSelector = DocumentHelper.createXPath("//jira//defu:passWord");
+		xpathSelector.setNamespaceURIs(nameSpaceMap);
+		Element passWordE = (Element) xpathSelector.selectSingleNode(config);
+		this.jiraPassWord = passWordE.getTextTrim();
+		
+		xpathSelector = DocumentHelper.createXPath("//jira//defu:loginUrl");
+		xpathSelector.setNamespaceURIs(nameSpaceMap);
+		Element loginUrlE = (Element) xpathSelector.selectSingleNode(config);
+		this.jiraLoginUrl = loginUrlE.getTextTrim();
+		
+		xpathSelector = DocumentHelper.createXPath("//jira//defu:rootUrl");
+		xpathSelector.setNamespaceURIs(nameSpaceMap);
+		Element rootUrlE = (Element) xpathSelector.selectSingleNode(config);
+		this.jiraRrootUrl = rootUrlE.getTextTrim();
+			
 		try {
 			loginJiraSystem();
 		} catch (Exception e) {
@@ -61,25 +96,20 @@ public class BusinessFactory
 	
 	public synchronized void loginJiraSystem() throws FailingHttpStatusCodeException, MalformedURLException, IOException
 	{
-		final String userName = "peng.zhang@argylesoftware.co.uk";
-		final String passWord = "quidos1";
-		
-		final String loginUrl = "https://argylesoftware.atlassian.net/login";
-		
 		// 检查该网站是否已经登录过了， 如果没登陆先进行登录操作
-		if(!isLogin(loginUrl))
+		if(!isLogin(this.jiraLoginUrl))
 		{
 			HtmlPage loginPage;
 			Log.logPrintln(Thread.currentThread().getName() + " log---> ","正在登录jira系统...");
-			loginPage = openWebPage(false, false, loginUrl);
+			loginPage = openWebPage(false, false, this.jiraLoginUrl);
 			HtmlInput userNameInput = (HtmlInput) loginPage.getElementById("username");
-			userNameInput.setValueAttribute(userName);
+			userNameInput.setValueAttribute(this.jiraUserName);
 			HtmlInput passWordInput = (HtmlInput) loginPage.getElementById("password");
-			passWordInput.setValueAttribute(passWord);
+			passWordInput.setValueAttribute(this.jiraPassWord);
 			HtmlButton loginButton = (HtmlButton) loginPage.getElementById("login");
 			loginButton.click();
 			
-			loginRegister(loginUrl, true);
+			loginRegister(this.jiraLoginUrl, true);
 		}
 	}
 	
@@ -121,7 +151,7 @@ public class BusinessFactory
 		{
 			nameSpaceMap.put("defu", defNamespace);
 		}
-		xpathSelector = DocumentHelper.createXPath("//defu:project");
+		xpathSelector = DocumentHelper.createXPath("//defu:projects//defu:project");
 		xpathSelector.setNamespaceURIs(nameSpaceMap);
 		List<Element> listProject = xpathSelector.selectNodes(config);
 		int i = 1;
@@ -228,4 +258,21 @@ public class BusinessFactory
 		}
 		return false;
 	}
+
+	public String getJiraUserName() {
+		return jiraUserName;
+	}
+
+	public String getJiraPassWord() {
+		return jiraPassWord;
+	}
+
+	public String getJiraRrootUrl() {
+		return jiraRrootUrl;
+	}
+
+	public String getJiraLoginUrl() {
+		return jiraLoginUrl;
+	}
+	
 }

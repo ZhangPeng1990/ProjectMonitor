@@ -25,6 +25,8 @@ public class Project implements Serializable
 	private boolean beginedChecked = false;
 	private boolean checkedFineshed = false;
 	
+	private boolean connectivity = false;//是否可以连接成功
+	
 	private int requestTime = 0;
 	public StringBuffer log = new StringBuffer();
 	
@@ -90,5 +92,11 @@ public class Project implements Serializable
 	}
 	public void setCheckedFineshed(boolean checkedFineshed) {
 		this.checkedFineshed = checkedFineshed;
+	}
+	public boolean isConnectivity() {
+		return connectivity;
+	}
+	public void setConnectivity(boolean connectivity) {
+		this.connectivity = connectivity;
 	}
 }

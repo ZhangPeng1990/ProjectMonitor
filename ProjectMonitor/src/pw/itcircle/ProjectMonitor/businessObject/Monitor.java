@@ -7,12 +7,15 @@ import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.conn.HttpHostConnectException;
 
 import pw.itcircle.ProjectMonitor.factory.BusinessFactory;
 import pw.itcircle.ProjectMonitor.tools.FileUtil;
+import pw.itcircle.ProjectMonitor.tools.FreeMarkerUtil;
 import pw.itcircle.ProjectMonitor.tools.Log;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
@@ -71,6 +74,7 @@ public class Monitor implements Runnable
 				else
 				{
 					p.log.append(p.getName()).append("------>OK, 测试地址--->").append(p.getUrl()).append(CR);
+					p.setConnectivity(true);
 				}
 			} catch (HttpHostConnectException e) {
 				p.log.append(p.getName()).append("------>存在异常，请检查!!").append("测试地址--->").append(p.getUrl()).append(CR);
@@ -154,12 +158,18 @@ public class Monitor implements Runnable
 				JiraProblem jp = new JiraProblem();
 				
 				HtmlTableCell issueKeyCell = hr.getCell(p.issueKeyIndex);
+				String url = null;
+				try {
+					url = BusinessFactory.init().getJiraRrootUrl() + issueKeyCell.getFirstElementChild().getAttribute("href");
+				} catch (Exception e) {
+				}
 				HtmlTableCell summaryCell = hr.getCell(p.summaryIndex);
 				HtmlTableCell assigneeCell = hr.getCell(p.assigneeIndex);
 				HtmlTableCell statusCell = hr.getCell(p.statusIndex);
 				HtmlTableCell createdDateCell = hr.getCell(p.createdDateIndex);
 				
 				jp.setName(issueKeyCell.asText());
+				jp.setUrl(url);
 				jp.setContent(summaryCell.asText());
 				jp.setCreateTime(createdDateCell.asText());
 				jp.setStatus(statusCell.asText());
@@ -221,17 +231,32 @@ public class Monitor implements Runnable
 				this.log.append(p.log);
 			}
 			
+			Log.logPrintln("开始生成监测报告html文件...");
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("ps", ps);
+			String templateContent = null;
+			try {
+				templateContent = FileUtil.getFileContent(BusinessFactory.init().reportTemplatePath);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			String reportHtml = FreeMarkerUtil.template2String(templateContent, map, true);
 //			FileSystemView fsv = FileSystemView.getFileSystemView();//获取用户主页， windows系统获取到的是桌面路径
 //			String deskPath = fsv.getHomeDirectory().getAbsolutePath() + File.separator; 
 			String logSavePath = logStorePathFolder + "monitorLog-" + getTimeStr() + ".txt";
 			FileUtil.setFileContent(logSavePath, log.toString(), "UTF-8");
 			Log.logPrintln("日志生成完成，存储位置：--->" + logSavePath);
+			String reportSavePath = logStorePathFolder + "monitorReport-" + getTimeStr() + ".html";
+			FileUtil.setFileContent(reportSavePath, reportHtml, "UTF-8");
+			Log.logPrintln("监测报告生成完成，存储位置：--->" + reportSavePath);
+			
 			
 			this.haveCreatedLog = true;
 		}
 		
 		
 	}
+	
 	
 	private static String getTimeStr()
 	{
