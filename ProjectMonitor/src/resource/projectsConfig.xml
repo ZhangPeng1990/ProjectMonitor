@@ -2,8 +2,8 @@
 
 <config>
 	<jira>
-		<userName>peng.zhang@argylesoftware.co.uk</userName>
-		<passWord>quidos1</passWord>
+		<userName></userName>
+		<passWord></passWord>
 		<loginUrl>https://argylesoftware.atlassian.net/login</loginUrl>
 		<rootUrl>https://argylesoftware.atlassian.net</rootUrl>
 	</jira>
@@ -113,6 +113,14 @@
 			<jiraUrl>https://argylesoftware.atlassian.net/issues/?jql=project = AIRS ORDER BY key DESC</jiraUrl>
 		</project>
 		
+		<project>
+			<name>Airs Uat</name>
+			<url>http://test.airconreport.co.uk/passport/index.do</url>
+			<alias>Airs Uat</alias>
+			<webName>Air-Conditioning Inspection Report System</webName>
+			<jiraUrl></jiraUrl>
+		</project>
+
 		<project>
 			<name>F-Gas Register</name>
 			<url>http://www.fgasregister.com/</url>
